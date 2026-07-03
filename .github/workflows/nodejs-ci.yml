@@ -11,17 +11,24 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20]
+        node-version: [24]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Check for lockfile (warn if missing)
+        run: |
+          if [ ! -f package-lock.json ] && [ ! -f npm-shrinkwrap.json ] && [ ! -f yarn.lock ]; then
+            echo "::warning::No dependency lockfile found. Consider committing package-lock.json for reproducible installs and caching.";
+          else
+            echo "Lockfile present.";
+          fi
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
 
       - name: Install dependencies
         run: npm install
