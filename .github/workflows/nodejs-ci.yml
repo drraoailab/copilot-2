@@ -41,8 +41,13 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Install dependencies
+      - name: Install dependencies (lockfile present)
+        if: steps.check-lock.outputs.has_lock == 'true'
         run: npm ci --prefer-offline --no-audit --no-progress
+
+      - name: Install dependencies (no lockfile)
+        if: steps.check-lock.outputs.has_lock == 'false'
+        run: npm install --no-audit --no-progress
 
       - name: Run lint
         run: npm run lint
