@@ -1,0 +1,24 @@
+:root{
+  --bg:#f7f8fb;
+  --card:#ffffff;
+  --accent:#2563eb;
+  --muted:#6b7280;
+  --error:#ef4444;
+}
+*{box-sizing:border-box}
+body{font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:#111;margin:0;padding:32px}
+.container{max-width:680px;margin:0 auto;background:var(--card);padding:28px;border-radius:10px;box-shadow:0 6px 20px rgba(16,24,40,0.06)}
+h1{margin-top:0;margin-bottom:12px;font-size:1.6rem}
+.field{margin-bottom:14px}
+label{display:block;margin-bottom:6px;font-weight:600}
+.required{color:var(--error);margin-left:6px;font-weight:700}
+input[type=text],input[type=email],input[type=number],input[type=tel],textarea{width:100%;padding:10px 12px;border:1px solid #e6e9ef;border-radius:8px;font-size:0.95rem}
+textarea{resize:vertical}
+.actions{text-align:right}
+button{background:var(--accent);color:white;border:none;padding:10px 16px;border-radius:8px;font-weight:600;cursor:pointer}
+.error{color:var(--error);margin-top:6px;font-size:0.9rem}
+.result{display:grid;grid-template-columns:160px 1fr;gap:8px 18px}
+dt{font-weight:700;color:var(--muted)}
+dd{margin:0}
+
+@media (max-width:600px){.container{padding:18px}}
